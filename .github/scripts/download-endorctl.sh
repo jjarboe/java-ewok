@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This script downloads the latest version of the endorctl CLI utility
+# If ENDORCTL_VERSION is set in the environment, the specified version will
+# be downloaded instead (ENDORCTL_SHA also needs to be set for verification)
+
 if [ "${ENDORCTL_VERSION:-latest}" == "latest" ]; then
    echo "Downloading latest version of endorctl";
    ENDORCTL_SHA=$(curl --silent https://api.endorlabs.com/meta/version | jq -r '.ClientChecksums.ARCH_TYPE_LINUX_AMD64');
