@@ -34,9 +34,9 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: endorlabs/github-action@main
         with:
-          namespace: "matt-learn"
-          api_key: ${{ secrets.ENDOR_API_KEY_ID }}
-          api_secret: ${{ secrets.ENDOR_API_SECRET_KEY }}
+          namespace ${{ secrets.ENDOR_NAMESPACE }}:
+          api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           enable_github_action_token: "false"
           scan_summary_output_type: "table"
           ci_run: "true"
@@ -44,9 +44,9 @@ jobs:
         if: github.event_name == 'push'
         uses: endorlabs/github-action@main
         with:
-          namespace: "matt-learn"
-          api_key: ${{ secrets.ENDOR_API_KEY_ID }}
-          api_secret: ${{ secrets.ENDOR_API_SECRET_KEY }}
+          namespace: ${{ secrets.ENDOR_NAMESPACE }}
+          api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           enable_github_action_token: "false"
           scan_summary_output_type: "table"
           ci_run: "false"
