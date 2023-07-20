@@ -16,7 +16,9 @@ jobs:
   ci-commons-demo-scan:
     permissions:
       id-token: write # This is required for requesting the JWT
+      actions: read
       contents: read  # -> Required by actions/checkout@v3 if checking out a private repository
+      security-events: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
