@@ -40,6 +40,7 @@ jobs:
           enable_github_action_token: "false"
           scan_summary_output_type: "table"
           ci_run: "true"
+          sarif_file: target/endor-findings-${{ github.sha }}.sarif
       - name: Endor Labs Scan Push to main
         if: github.event_name == 'push'
         uses: endorlabs/github-action@main
@@ -49,8 +50,13 @@ jobs:
           api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           enable_github_action_token: "false"
           scan_summary_output_type: "table"
-          ci_run: "false"
-    
+          ci_run: "true"
+          sarif_file: target/endor-findings-${{ github.sha }}.sarif
+
+      - name: Upload findings to GitHub
+        uses: github/codeql-action/upload-sarif@9885f86fab4879632b7e44514f19148225dfbdcd
+        with:
+          sarif_file: target/endor-findings-${{ github.sha }}.sarif
       - name: Get endorctl binary
         shell: bash
         run: ./.github/scripts/download-endorctl.sh
